@@ -11,11 +11,8 @@ app.post('/parse', upload.single('file'), (req, res) => {
       return res.status(400).json({ error: 'No file uploaded' });
     }
     
-    XLSX.set_cptable(require('xlsx/dist/cpexcel.full.mjs'));
-    
     const workbook = XLSX.read(req.file.buffer, { 
-      type: 'buffer',
-      codepage: 1251
+      type: 'buffer'
     });
     
     const sheetName = workbook.SheetNames[0];
